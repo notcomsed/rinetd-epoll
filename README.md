@@ -86,13 +86,9 @@ none
 rinetd一直没有epoll模式,本来不想写的,于是在网上找,找到了这个https://github.com/rogerwangzy/rinetdplus
 ,用ae实现的,
 编译后测试,在iperf下多连接大流量测试第一次连接正常,后面几次就连不上了.strcae -p pid显示fd被占用,应该是忘了关闭socksfd,打开代码一看,断开连接后关闭了的啊(可能我是debian 11 gcc 10.2.1,可能gcc太新了),
-奈何我技术不行,修不了ae的bug, 只好epoll纯手写一个,
+奈何我技术不行,修不了ae的bug, 只好用纯epoll写一个,
 
 ipv6是顺便改的,其实很容易,现在的库里面的bind()函数自动支持ipv6,把AF_INET,PF_INET改成AF_INET6,PF_INET6就行了,根本没有难度,支持udp也是挺容易的,就是 把SOCK_STREAM改为SOCK_DGRAM, 但是我不需要,就没有写.
-
-一个二个的,偷懒,导致老子亲手下场,老子再也不想写了.
-这家https://github.com/samhocevar/rinetd 一直不争气,21年就有人Issues,托了两年多没有写出来,于是我来写,
-本来想用这个版本https://github.com/samhocevar/rinetd 修改的,奈何他的代码太多了,加入了许多的库,不想看,就用了这个版本 https://github.com/boutell/rinetd 代码少一点的
 
 软件测试了几天,也挺稳定的,没有出现问题
 只要在我的服务器上没有出现bug,我就不会修.
