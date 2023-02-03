@@ -84,7 +84,7 @@ none
 rinetd 在添加epoll时,发现一些bug就顺便修了,修完bug后程序出错,又改回来,这个程序真是靠bug运行的.
 只要是修完后程序没有出错的bug都修了.
 
-更新: 已知问题,epoll模式在debian 10x64 下会自动断开连接,debian 10x32位下正常,原因未知,debian 11下32位也正常.暂时不修了,2/03更新,已修复,请用1.13版本
+更新: 已修复,epoll模式在debian 10x64 下会自动断开连接,请用1.13版本.
 
 rinetd一直没有epoll模式,本来不想写的,于是在网上找,找到了这个https://github.com/rogerwangzy/rinetdplus
 ,用ae实现的,
