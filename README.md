@@ -41,13 +41,15 @@ forwarding http(s) example
 ::           443       127.0.0.1     8443
 ```
 
-forwarding cowrie ssh example
+forwarding cowrie ssh example.
+
 cowrie bind in 127.0.0.1:2222
 ```bash
 ::           22        127.0.0.1     2222
 ```
 
 `::` mean bind all ip address include ipv4&ipv6. 
+
 if you want only bind ipv4 address, please use `0.0.0.0`
 
 ```bash
@@ -74,6 +76,7 @@ make && make install
 
 ## Development
 update 1.13, fixd connection break in x64.
+
 none
 
 源代码来自这个版本https://github.com/boutell/rinetd 0.62
