@@ -1,11 +1,7 @@
 # rinetd epoll
 rinetd version 1.13 use epoll instead of select,support setuid after bind, support ipv6, support auto choose event mode(epoll/select).
-
-fix many bugs
-
-update 1.13,fixd connection break in x64.
  
-This version test on debian 10 and debian 11.
+This version tested on debian 10 and debian 11.
  
 - [x] epoll support
 - [x] IPv6 support
@@ -77,6 +73,7 @@ make && make install
 ```
 
 ## Development
+update 1.13, fixd connection break in x64.
 none
 
 源代码来自这个版本https://github.com/boutell/rinetd 0.62
