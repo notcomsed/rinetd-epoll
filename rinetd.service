@@ -1,0 +1,13 @@
+[Unit]
+Description=rinetd Service
+After=network.target
+
+[Service]
+Type=simple
+Restart=on-failure
+RestartSec=10s
+ExecStart=/usr/bin/rinetd
+LimitNOFILE=1048576
+
+[Install]
+WantedBy=multi-user.target
