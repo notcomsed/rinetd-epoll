@@ -1286,7 +1286,7 @@ void handleRemoteRead(int i)
 		handleCloseFromRemote(i);
 		if (Emode == 1) {
 		if (lofdstat[i]>0){
-			lofdstat[i]=1;}}
+		lofdstat[i]=1;}}
 			//printf("debug: Remote Close on %d",i);
 		return;
 	}
