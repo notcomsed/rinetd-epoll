@@ -79,18 +79,22 @@ update 1.13, fixd connection break in x64.
 
 none
 
+### 警告,该代码存在问题(指针跑飞;TCP链接过多时,断开TCP后缓存无法释放;运行超过一星期后,出现错误串流奇怪问题),本人已在1.64版本修复,需要修复的可自行修复.
+
+#### rinetd bug过多,本人1.64版本修复后又有了新bug,本人放弃了改进rinetd,重写了rinetd,取名为reforward. reforward写了两个版本,Linux是epoll,Windows使用的是Win API实现.
+
+#### Linux下reforward可稳定接受5k-10k左右的链接,最大接受40k-50k左右的链接.CPU 最高为60%.似乎没有人需要,我就不放出来了
+
+#### 需要reforward的可以提issues.
+
+##### Linux下端口转发软件那么多,何必局限于我这个软件呢
+
+###### 不过reforward直接在内存中建立反向索引表真快,比用for循环遍历(rinetd方法),设置flag标识,建立hash表(nginx) 等其他查找方法快很多.
+
+###### 但是导致reforward直接把相关地址扔过去了,没法实现其他功能,只有转发功能,其他功能reforward都没有.
+
+--------------
+
 源代码来自这个版本https://github.com/boutell/rinetd 0.62
 
-更新: 已修复,epoll模式在debian 10x64 下会自动断开连接,请用1.13版本.
-
-rinetd一直没有epoll模式,本来不想写的,于是在网上找,找到了这个https://github.com/rogerwangzy/rinetdplus
-,用ae实现的,
-编译后测试,在iperf下多连接大流量测试第一次连接正常,后面几次就连不上了.strcae -p pid显示fd被占用,应该是忘了关闭socksfd,打开代码一看,断开连接后关闭了的啊(可能我是debian 11 gcc 10.2.1,可能gcc太新了),
-奈何我技术不行,修不了ae的bug, 只好用纯epoll写一个,
-
-ipv6是顺便改的,其实很容易,现在的库里面的bind()函数自动支持ipv6,把AF_INET,PF_INET改成AF_INET6,PF_INET6就行了,根本没有难度,支持udp也是挺容易的,就是 把SOCK_STREAM改为SOCK_DGRAM, 但是我不需要,就没有写.
-
-软件测试了几天,也挺稳定的,没有出现问题
-只要在我的服务器上没有出现bug,我就不会修.
-
-Windows,和udp的支持去使用这个版本https://github.com/samhocevar/rinetd
+更新: 已修复1.12,epoll模式在debian 10x64 下会自动断开连接,请用1.13版本.
