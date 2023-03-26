@@ -79,19 +79,9 @@ update 1.13, fixd connection break in x64.
 
 none
 
-### 警告,该代码存在问题(指针跑飞;TCP链接过多时,断开TCP后缓存无法释放;运行超过一星期后,出现错误串流奇怪问题),本人已在1.64版本修复,需要修复的可自行修复.
+### 警告,该代码可能存在问题,可以使用这个版本https://github.com/notcomsed/reforward
 
-#### rinetd bug过多,本人1.64版本修复后又有了新bug,本人放弃了改进rinetd,重写了rinetd,取名为reforward. reforward写了两个版本,Linux是epoll,Windows使用的是Win API实现.
-
-#### Linux下reforward可稳定接受5k-10k左右的链接,最大接受40k-50k左右的链接.CPU 最高为60%.似乎没有人需要,我就不放出来了
-
-#### 需要reforward的可以提issues.
-
-##### Linux下端口转发软件那么多,何必局限于我这个软件呢
-
-###### 不过reforward直接在内存中建立反向索引表真快,比用for循环遍历(rinetd方法),设置flag标识,建立hash表(nginx) 等其他查找方法快很多.
-
-###### 但是导致reforward直接把相关地址扔过去了,没法实现其他功能,只有转发功能,其他功能reforward都没有.
+#### Warning: this code may have some problem , please use this version https://github.com/notcomsed/reforward
 
 --------------
 
